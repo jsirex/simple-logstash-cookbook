@@ -29,3 +29,6 @@ HashSyntax:
 
 RescueModifier:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
