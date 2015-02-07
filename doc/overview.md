@@ -1,2 +1,4 @@
 This cookbook installs only logstash and provide few typical configurations.
 It doesn't install or depends on java, apache, nginx, elasticsearch, kibana, etc...
+
+It also skips lumberjack.
