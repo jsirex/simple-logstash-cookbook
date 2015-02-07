@@ -19,6 +19,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[simple-logstash]
+      - recipe[test-logstash]
     attributes:
       
