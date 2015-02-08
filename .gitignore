@@ -16,3 +16,4 @@ bin/*
 
 .berkshelf/
 reports/
+.yardoc/
