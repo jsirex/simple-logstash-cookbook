@@ -1,2 +1,7 @@
 filter {
+  if [type] == "test1" {
+    mutate {
+      add_field => {"it-test" => "test1"}
+    }
+  }
 }

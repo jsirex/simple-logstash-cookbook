@@ -1,2 +1,8 @@
 input {
+  file {
+    type => 'test1'
+    path => '/tmp/samples/test1.log'
+    codec => json
+    start_position => 'beginning'
+  }
 }

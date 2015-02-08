@@ -1,6 +1,17 @@
 include_recipe 'java'
 include_recipe 'simple-logstash'
 
+# Setup directory with few samples
+remote_directory '/tmp/samples' do
+  source 'samples'
+  owner 'root'
+  group 'root'
+  mode '0777'
+  files_mode '0644'
+  files_owner 'root'
+  files_group 'root'
+end
+
 # Test one
 logstash_output 'test1'
 logstash_input 'test1'
