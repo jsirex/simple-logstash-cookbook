@@ -21,6 +21,7 @@ class Chef
         @owner = nil
         @group = nil
         @mode = nil
+        @variables = nil
 
         @lga = node && node['logstash'] || {}
       end
@@ -49,6 +50,10 @@ class Chef
         set_or_return(:mode, arg, :kind_of => String)
       end
 
+      def variables(arg = nil)
+        set_or_return(:variables, arg, :kind_of => Hash)
+      end
+
       def after_created
         super
 
@@ -58,6 +63,7 @@ class Chef
         @owner ||= default_owner
         @group ||= default_group
         @mode ||= default_mode
+        @variables ||= default_variables
 
         notifies :restart, "logstash_service[#{service}]"
       end
@@ -88,6 +94,10 @@ class Chef
 
       def default_mode
         '0640'
+      end
+
+      def default_variables
+        {}
       end
     end
   end

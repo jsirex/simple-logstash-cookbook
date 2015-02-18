@@ -44,6 +44,7 @@ class Chef
         @conf_file.owner new_resource.owner
         @conf_file.group new_resource.group
         @conf_file.mode new_resource.mode
+        @conf_file.variables new_resource.variables
         @conf_file.action :nothing
 
         @conf_file

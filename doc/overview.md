@@ -31,6 +31,7 @@ You better want to use its child classes.
 - **owner** - set owner of config file. Defaults to `node['logstash']['user']`
 - **group** - set group of config file. Defaults to `node['logstash']['group']`
 - **mode** - set group of config file. Defaults to `0640`
+- **variables** - set variables for config template. Defaults to `{}`
 
 ### logstash\_input
 

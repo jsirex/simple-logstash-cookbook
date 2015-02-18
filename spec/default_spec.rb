@@ -15,13 +15,4 @@ describe 'simple-logstash::default' do
   #  it 'arks logstash archive' do
   #    expect(chef_run).to install_ark('logstash')
   #  end
-
-  # it 'create logstash config file' do
-  #   expect(chef_run).to render_file('/opt/logstash/config/logstash.yml')
-  # end
-
-  # it 'starts runit service logstash' do
-  #   expect(chef_run).to enable_runit_service('logstash')
-  #   expect(chef_run).to start_runit_service('logstash')
-  # end
 end
