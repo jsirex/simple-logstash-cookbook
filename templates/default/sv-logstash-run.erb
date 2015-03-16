@@ -5,4 +5,4 @@ cd $HOME
 
 exec 2>&1
 
-exec chpst -u <%= @options['user'] %> <%= @options['home'] %>/bin/logstash <%= @options['args'].join(' ') %>
+exec su - <%= @options['user'] %> -c "<%= @options['home'] %>/bin/logstash <%= @options['args'].join(' ') %>"

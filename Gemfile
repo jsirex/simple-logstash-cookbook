@@ -20,6 +20,7 @@ end
 group :knife do
   gem 'knife-cookbook-doc'
   gem 'knife-supermarket'
+  gem 'knife-spork'
 end
 
 # Kitchen
