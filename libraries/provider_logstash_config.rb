@@ -10,6 +10,10 @@ class Chef
         true
       end
 
+      def template_cookbook
+        new_resource.cookbook.nil? ? new_resource.cookbook_name.to_s : new_resource.cookbook
+      end
+
       def action_create
         conf_dir.run_action :create
         conf_file.run_action :create
@@ -39,7 +43,7 @@ class Chef
         return @conf_file if @conf_file
         @conf_file = Chef::Resource::Template.new(new_resource.config, run_context)
         @conf_file.path new_resource.config
-        @conf_file.cookbook cookbook_name
+        @conf_file.cookbook template_cookbook
         @conf_file.source new_resource.source
         @conf_file.owner new_resource.owner
         @conf_file.group new_resource.group

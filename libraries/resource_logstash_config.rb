@@ -15,6 +15,7 @@ class Chef
         @action = :create
         @allowed_actions = [:create, :delete]
 
+        @cookbook = nil
         @service = nil
         @config = nil
         @source = nil
@@ -24,6 +25,10 @@ class Chef
         @variables = nil
 
         @lga = node && node['logstash'] || {}
+      end
+
+      def cookbook(arg = nil)
+        set_or_return(:cookbook, arg, :kind_of => String)
       end
 
       def service(arg = nil)
