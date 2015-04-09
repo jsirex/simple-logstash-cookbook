@@ -1,7 +1,3 @@
-# Do not include in run list this recipe
-# It only for spec-testing and absolutely useless
-
-# The same as in IT
 logstash_output 'test1'
 logstash_input 'test1'
 logstash_filter 'test1'

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'simple-logstash::_test' do
+describe 'test-logstash::_test' do
   cached(:chef_run) { ChefSpec::ServerRunner.new.converge described_recipe }
 
   it 'enables logstash service' do
