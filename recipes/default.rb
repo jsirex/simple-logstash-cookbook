@@ -11,7 +11,7 @@ user 'logstash user' do
 end
 
 group 'logstash group' do
-  group_name node['logstash']['user']
+  group_name node['logstash']['group']
   action :create
   system true
 end
