@@ -19,7 +19,7 @@ GRAPH
     build-essential (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
-  simple-logstash (0.2.2)
+  simple-logstash (0.2.3)
     ark (>= 0.0.0)
     runit (>= 0.0.0)
   test-logstash (0.0.0)
