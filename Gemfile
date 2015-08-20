@@ -27,4 +27,5 @@ end
 group :kitchen do
   gem 'test-kitchen', '~> 1.3'
   gem 'kitchen-docker'
+  gem 'kitchen-vagrant'
 end

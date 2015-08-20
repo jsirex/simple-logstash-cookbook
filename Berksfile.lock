@@ -17,7 +17,7 @@ GRAPH
   packagecloud (0.0.19)
   runit (1.7.2)
     packagecloud (>= 0.0.0)
-  simple-logstash (0.2.3)
+  simple-logstash (0.2.4)
     ark (>= 0.0.0)
     runit (>= 1.7.2)
   simple-logstash-test (0.0.0)

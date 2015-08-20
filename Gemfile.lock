@@ -117,6 +117,8 @@ GEM
     json (1.8.3)
     kitchen-docker (2.3.0)
       test-kitchen (>= 1.0.0)
+    kitchen-vagrant (0.18.0)
+      test-kitchen (~> 1.4)
     knife-cookbook-doc (0.16.0)
       chef
       erubis
@@ -274,6 +276,7 @@ DEPENDENCIES
   ci_reporter_rspec
   foodcritic
   kitchen-docker
+  kitchen-vagrant
   knife-cookbook-doc
   knife-spork
   knife-supermarket

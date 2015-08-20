@@ -84,24 +84,24 @@ You can visit fixture cookbook [test-logstash](test/fixtures/cookbooks/test-logs
 
 ## Platform:
 
-* Debian
-* Ubuntu
-* Centos
+* debian
+* ubuntu
+* centos
 
 ## Cookbooks:
 
 * ark
-* runit
+* runit (>= 1.7.2)
 
 # Attributes
 
-* `node['logstash']['download_url']` -  Defaults to `"https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz"`.
-* `node['logstash']['checksum']` -  Defaults to `"d5be171af8d4ca966a0c731fc34f5deeee9d7631319e3660d1df99e43c5f8069"`.
-* `node['logstash']['version']` -  Defaults to `"1.4.2"`.
-* `node['logstash']['user']` -  Defaults to `"logstash"`.
-* `node['logstash']['group']` -  Defaults to `"logstash"`.
-* `node['logstash']['prefix_root']` -  Defaults to `"/opt"`.
-* `node['logstash']['prefix_conf']` -  Defaults to `"/etc"`.
+* `node['logstash']['download_url']` -  Defaults to `https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz`.
+* `node['logstash']['checksum']` -  Defaults to `d5be171af8d4ca966a0c731fc34f5deeee9d7631319e3660d1df99e43c5f8069`.
+* `node['logstash']['version']` -  Defaults to `1.4.2`.
+* `node['logstash']['user']` -  Defaults to `logstash`.
+* `node['logstash']['group']` -  Defaults to `logstash`.
+* `node['logstash']['prefix_root']` -  Defaults to `/opt`.
+* `node['logstash']['prefix_conf']` -  Defaults to `/etc`.
 
 # Recipes
 
@@ -110,5 +110,7 @@ You can visit fixture cookbook [test-logstash](test/fixtures/cookbooks/test-logs
 # License and Maintainer
 
 Maintainer:: Yauhen Artsiukhou (<jsirex@gmail.com>)
+Source:: https://github.com/jsirex/simple-logstash-cookbook
+Issues:: https://github.com/jsirex/simple-logstash-cookbook/issues
 
-License:: Apache
+License:: Apache 2
