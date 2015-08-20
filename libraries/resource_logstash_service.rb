@@ -8,7 +8,7 @@ class Chef
         super
 
         @resource_name = :logstash_service
-        @provider = Chef::Provider::Service::Logstash
+        @provider = Chef::Provider::LogstashService
 
         @cookbook = 'simple-logstash'
         @run_template_name = 'logstash'

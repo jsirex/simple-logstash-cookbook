@@ -1,8 +1,6 @@
 class Chef
   class Provider
-    class Service
-      class Logstash < Runit
-      end
+    class LogstashService < RunitService
     end
   end
 end
