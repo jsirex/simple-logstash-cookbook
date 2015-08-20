@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'test-logstash::_test' do
+describe 'simple-logstash-test::default' do
   cached(:chef_run) { ChefSpec::ServerRunner.new.converge described_recipe }
 
   it 'enables logstash service' do
@@ -25,5 +25,9 @@ describe 'test-logstash::_test' do
     it "creates logstash output for #{tst}" do
       expect(chef_run).to create_logstash_output(tst)
     end
+  end
+
+  it 'creates samples directory for tests' do
+    expect(chef_run).to create_remote_directory('/tmp/samples')
   end
 end

@@ -14,11 +14,9 @@ platforms:
         - apt-get -y install build-essential
 
   - name: chef/centos-7.0
-    
 
 suites:
   - name: default
     run_list:
-      - recipe[test-logstash]
+      - recipe[simple-logstash-test]
     attributes:
-      

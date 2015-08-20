@@ -13,4 +13,4 @@ supports 'ubuntu'
 supports 'centos'
 
 depends 'ark'
-depends 'runit'
+depends 'runit', '>= 1.7.2'
