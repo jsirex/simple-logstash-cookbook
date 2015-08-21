@@ -78,7 +78,7 @@ Actions are same as in **runit** HWRP. Use this resource as you use **runit**
 
 ## Example
 
-You can visit fixture cookbook [test-logstash](test/fixtures/cookbooks/test-logstash)
+You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/simple-logstash-test)
 
 # Requirements
 
@@ -95,9 +95,9 @@ You can visit fixture cookbook [test-logstash](test/fixtures/cookbooks/test-logs
 
 # Attributes
 
-* `node['logstash']['download_url']` -  Defaults to `https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz`.
-* `node['logstash']['checksum']` -  Defaults to `d5be171af8d4ca966a0c731fc34f5deeee9d7631319e3660d1df99e43c5f8069`.
-* `node['logstash']['version']` -  Defaults to `1.4.2`.
+* `node['logstash']['download_url']` -  Defaults to `https://download.elastic.co/logstash/logstash/logstash-1.5.3.tar.gz`.
+* `node['logstash']['checksum']` -  Defaults to `eb3c366074e561d777348bfe9db3d4d1cccbf2fa8e7406776f500b4ca639c4aa`.
+* `node['logstash']['version']` -  Defaults to `1.5.3`.
 * `node['logstash']['user']` -  Defaults to `logstash`.
 * `node['logstash']['group']` -  Defaults to `logstash`.
 * `node['logstash']['prefix_root']` -  Defaults to `/opt`.

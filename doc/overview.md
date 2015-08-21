@@ -2,7 +2,7 @@ This cookbook installs only logstash and provides few typical configurations.
 It doesn't install or depends on java, apache, nginx, elasticsearch, kibana, etc...
 
 It also skips lumberjack.
-	
+
 ## Usage
 
 Default recipe only creates user/group and arks logstash.
@@ -76,4 +76,4 @@ Actions are same as in **runit** HWRP. Use this resource as you use **runit**
 
 ## Example
 
-You can visit fixture cookbook [test-logstash](test/fixtures/cookbooks/test-logstash)
+You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/simple-logstash-test)
