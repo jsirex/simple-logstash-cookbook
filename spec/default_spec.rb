@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'simple-logstash::default' do
   cached(:chef_run) do
-    ChefSpec::ServerRunner.new do |node|
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '7.11') do |node|
       node.override['logstash']['user'] = 'lgu'
       node.override['logstash']['group'] = 'lgg'
     end.converge(described_recipe)
@@ -16,8 +17,7 @@ describe 'simple-logstash::default' do
     expect(chef_run).to create_group('lgg')
   end
 
-  # No matchers in 0.9.0 ark. Wait for new version
-  #  it 'arks logstash archive' do
-  #    expect(chef_run).to install_ark('logstash')
-  #  end
+  it 'arks logstash archive' do
+    expect(chef_run).to install_ark('logstash')
+  end
 end

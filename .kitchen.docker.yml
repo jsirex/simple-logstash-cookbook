@@ -1,28 +1,26 @@
 ---
 driver:
   name: docker
+  provision_command:
+    # Modern chef includes ruby 2.3.1 which we're want to see
+    - curl -L https://www.opscode.com/chef/install.sh | bash -s -- -v 12.14.89
+    # For auto tests we need additional gems which requires build tools (example:)
+    - apt-get -f -y install build-essential libxml2 libxml2-dev libxml2-utils
 
 provisioner:
   name: chef_zero
+  required_chef_omnibus: false
 
 platforms:
-  - name: debian-7.7
+  - name: debian-7.11
     driver_config:
-      require_chef_omnibus: false
-      provision_command:
-        - apt-get update; apt-get -y install build-essential wget net-tools
-        - curl -L https://www.opscode.com/chef/install.sh | bash
+      run_command: /sbin/init
 
-  - name: debian-8.1
+  - name: debian-8.6
     driver_config:
-      require_chef_omnibus: false
-      provision_command:
-        - apt-get update; apt-get -y install build-essential wget net-tools
-        - curl -L https://www.opscode.com/chef/install.sh | bash
+      run_command: /bin/systemd
 
-  - name: centos-7
-    driver_config:
-      require_chef_omnibus: false
-      provision_command:
-        - yum install -y tar initscripts
-        - curl -L https://www.opscode.com/chef/install.sh | bash
+  - name: centos-6.7
+  - name: centos-7.2
+  - name: ubuntu-12.04
+  - name: ubuntu-14.04

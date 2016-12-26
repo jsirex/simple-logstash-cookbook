@@ -1,48 +1,43 @@
 #!/usr/bin/env rake
-require 'rake'
+# frozen_string_literal: true
+require 'foodcritic'
+require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require 'ci/reporter/rake/rspec'
+require 'kitchen/rake_tasks'
+# require 'knife_cookbook_doc/rake_task'
+require 'stove/rake_task'
 
 cookbook_dir = File.expand_path File.dirname(__FILE__)
 ENV['BERKSHELF_PATH'] = cookbook_dir + '/.berkshelf'
-ENV['CI_REPORTS'] =  cookbook_dir + '/reports'
+ENV['CI_REPORTS'] = cookbook_dir + '/reports'
 
+FoodCritic::Rake::LintTask.new do |t|
+  t.options = {
+    progress: true,
+    fail_tags: %w(any)
+  }
+end
+
+RuboCop::RakeTask.new { |t| t.fail_on_error = true }
+
+RSpec::Core::RakeTask.new(:spec => ['ci:setup:rspec'])
+
+Kitchen::RakeTasks.new
+
+# KnifeCookbookDoc::RakeTask.new(:doc) do |task|
+#   task.options[:cookbook_dir] = './'
+#   task.options[:constraints] = true
+#   task.options[:output_file] = 'README.md'
+# end
+
+Stove::RakeTask.new
 
 task default: 'quick'
 
-RSpec::Core::RakeTask.new(:spec => ["ci:setup:rspec"])
-
-begin
-  require 'kitchen/rake_tasks'
-  Kitchen::RakeTasks.new
-rescue LoadError
-  puts '>>>>> Kitchen gem not loaded, how do you test?' unless ENV['CI']
-rescue Kitchen::UserError => e
-  puts "Warn: #{e}"
-end
-
-begin
-  require 'foodcritic'
-
-  task default: [:foodcritic]
-  FoodCritic::Rake::LintTask.new do |t|
-    t.options = { fail_tags: %w/correctness services libraries deprecated/ }
-  end
-rescue LoadError
-  warn 'Foodcritic Is missing ZOMG'
-end
-
-begin
-  require 'rubocop/rake_task'
-  RuboCop::RakeTask.new do |task|
-    task.fail_on_error = true
-  end
-rescue LoadError
-  warn 'Rubocop gem not installed, now the code will look like crap!'
-end
-
 desc 'Run all of the quick tests.'
 task :quick do
+  # Rake::Task['doc'].invoke
   Rake::Task['rubocop'].invoke
   Rake::Task['foodcritic'].invoke
   Rake::Task['spec'].invoke

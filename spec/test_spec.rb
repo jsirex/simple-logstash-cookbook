@@ -1,7 +1,10 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe 'simple-logstash-test::default' do
-  cached(:chef_run) { ChefSpec::ServerRunner.new.converge described_recipe }
+  cached(:chef_run) do
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '7.11').converge(described_recipe)
+  end
 
   it 'enables logstash service' do
     expect(chef_run).to enable_logstash_service('logstash')

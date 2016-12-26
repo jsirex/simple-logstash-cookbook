@@ -1,6 +1,5 @@
-require 'serverspec'
-
-set :backend, :exec
+# frozen_string_literal: true
+require_relative 'spec_helper'
 
 describe process('java') do
   it { should be_running }
@@ -43,3 +42,21 @@ end
   end
 end
 
+# # Example for infrataster
+# describe server(:public) do
+#   describe http('http://host/') do
+#     it 'responses with redirect to https' do
+#       expect(response.headers['Location']).to eq('https://host/')
+#     end
+#
+#     it 'response code is 301' do
+#       expect(response.status).to eq(301)
+#     end
+#   end
+#
+#   describe http('https://host/', ssl: { verify: false }) do
+#     it 'response code is 200' do
+#       expect(response.status).to eq(200)
+#     end
+#   end
+# end
