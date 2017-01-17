@@ -60,6 +60,10 @@ class Chef
         @lga['user'] || 'logstash'
       end
 
+      def default_group
+        @lga['group'] || 'logstash'
+      end
+
       def default_home
         @lga['prefix_root'] ? ::File.join(@lga['prefix_root'], 'logstash') : '/opt/logstash'
       end
@@ -83,6 +87,7 @@ class Chef
       def setup_options
         @options = {
           'user' => default_user,
+          'group' => default_group,
           'home' => default_home,
           'args' => logstash_args
         }
