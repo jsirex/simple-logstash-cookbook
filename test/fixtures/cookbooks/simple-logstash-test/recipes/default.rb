@@ -36,4 +36,7 @@ logstash_filter 'test3' do
 end
 
 logstash_service 'logstash'
-logstash_service 'logstash-two'
+logstash_service 'logstash-two' do
+  logstash_user 'root'
+  logstash_group 'root'
+end

@@ -7,7 +7,7 @@ description      'Installs/Configures simple-logstash. No less. No more.'
 long_description 'Installs/Configures simple-logstash. No less. No more.'
 issues_url       'https://github.com/jsirex/simple-logstash-cookbook/issues' if respond_to?(:issues_url)
 source_url       'https://github.com/jsirex/simple-logstash-cookbook' if respond_to?(:source_url)
-version          '0.4.0'
+version          '0.5.0'
 
 supports 'debian'
 supports 'ubuntu'

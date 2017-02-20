@@ -21,6 +21,8 @@ class Chef
         @logstash_quiet = true
         @logstash_verbose = false
         @logstash_debug = false
+        @logstash_user = nil
+        @logstash_group = nil
 
         @lga = node && node['logstash'] || {}
       end
@@ -47,6 +49,14 @@ class Chef
 
       def logstash_debug(arg = nil)
         set_or_return(:logstash_debug, arg, :kind_of => [TrueClass, FalseClass])
+      end
+
+      def logstash_user(arg = nil)
+        set_or_return(:logstash_user, arg, :kind_of => String)
+      end
+
+      def logstash_group(arg = nil)
+        set_or_return(:logstash_group, arg, :kind_of => String)
       end
 
       def after_created
@@ -86,8 +96,8 @@ class Chef
 
       def setup_options
         @options = {
-          'user' => default_user,
-          'group' => default_group,
+          'user' => logstash_user || default_user,
+          'group' => logstash_group || default_group,
           'home' => default_home,
           'args' => logstash_args
         }
