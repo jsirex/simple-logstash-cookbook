@@ -6,7 +6,7 @@ user 'logstash user' do
   comment 'Logstash User'
   home "#{node['logstash']['prefix_root']}/logstash"
   shell '/bin/bash'
-  supports manage_home: false
+  manage_home false
   action :create
   system true
 end

@@ -12,11 +12,11 @@ provisioner:
   required_chef_omnibus: false
 
 platforms:
-  - name: debian-7.11
+  - name: debian-wheezy
     driver_config:
       run_command: /sbin/init
 
-  - name: debian-8.6
+  - name: debian-jessie
     driver_config:
       run_command: /bin/systemd
 
