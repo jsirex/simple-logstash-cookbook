@@ -84,9 +84,9 @@ class Chef
 
       def logstash_args
         args = []
-        args << "--config #{logstash_config_path}"
-        args << "--pluginpath #{logstash_plugin_path}" if logstash_plugin_path
-        args << "--filterworkers #{logstash_filter_workers}"
+        args << "-f #{logstash_config_path}"
+        args << "-p #{logstash_plugin_path}" if logstash_plugin_path
+        args << "-w #{logstash_filter_workers}"
         args << '--quiet' if logstash_quiet
         args << '--verbose' if logstash_verbose
         args << '--debug' if logstash_debug
