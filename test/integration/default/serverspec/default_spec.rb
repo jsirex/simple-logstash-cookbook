@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 describe process('java') do
@@ -17,7 +18,7 @@ describe command('ls /opt/logstash/.sincedb_*') do
   its(:exit_status) { should eq 0 }
 end
 
-%w(logstash logstash-two).each do |svc|
+%w[logstash logstash-two].each do |svc|
   describe command("/etc/init.d/#{svc} status") do
     its(:exit_status) { should eq 0 }
   end

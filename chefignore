@@ -1,7 +1,3 @@
-# Put files/directories that should be ignored in this file when uploading
-# or sharing to the community site.
-# Lines that start with '# ' are comments.
-
 # OS generated files #
 ######################
 .DS_Store
@@ -48,11 +44,21 @@ a.out
 .watchr
 .rspec
 spec/*
-spec/fixtures/*
 test/*
 features/*
+examples/*
 Guardfile
 Procfile
+.kitchen*
+.rubocop.yml
+spec/*
+Rakefile
+.travis.yml
+.foodcritic
+.codeclimate.yml
+
+# RVM
+.ruby-version
 
 # SCM #
 #######
@@ -69,15 +75,23 @@ Procfile
 
 # Berkshelf #
 #############
+Berksfile
+Berkshelf.lock
+.berkshelf/
 cookbooks/*
 tmp
-.berkshelf/
-Berkshelf.lock
+
+# Policyfile #
+##############
+Policyfile.rb
+Policyfile.lock.json
 
 # Cookbooks #
 #############
-CONTRIBUTING
+CONTRIBUTING*
 CHANGELOG*
+TESTING*
+MAINTAINERS.toml
 
 # Strainer #
 ############
@@ -109,4 +123,5 @@ reports/
 .yardoc/
 
 # Gemfile
+Gemfile
 Gemfile.lock

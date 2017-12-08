@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'simple-logstash-test::default' do
@@ -14,7 +15,7 @@ describe 'simple-logstash-test::default' do
     expect(chef_run).to enable_logstash_service('logstash-two')
   end
 
-  %w(test1 test2 test3).each do |tst|
+  %w[test1 test2 test3].each do |tst|
     it "creates logstash input for #{tst}" do
       expect(chef_run).to create_logstash_input(tst)
     end
@@ -24,7 +25,7 @@ describe 'simple-logstash-test::default' do
     end
   end
 
-  %w(test1 test3).each do |tst|
+  %w[test1 test3].each do |tst|
     it "creates logstash output for #{tst}" do
       expect(chef_run).to create_logstash_output(tst)
     end

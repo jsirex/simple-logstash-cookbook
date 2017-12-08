@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 if defined?(ChefSpec)
 
   def start_logstash_service(service)

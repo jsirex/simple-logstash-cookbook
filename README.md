@@ -84,33 +84,33 @@ You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/si
 
 ## Platform:
 
-* debian
-* ubuntu
-* centos
+* debian (>= 8.0)
+* ubuntu (>= 16.0)
+* centos (>= 7.0)
 
 ## Cookbooks:
 
 * ark
-* runit (>= 1.7.2)
 
 # Attributes
 
-* `node['logstash']['download_url']` -  Defaults to `https://download.elastic.co/logstash/logstash/logstash-1.5.3.tar.gz`.
-* `node['logstash']['checksum']` -  Defaults to `eb3c366074e561d777348bfe9db3d4d1cccbf2fa8e7406776f500b4ca639c4aa`.
-* `node['logstash']['version']` -  Defaults to `1.5.3`.
+* `node['logstash']['download_url']` -  Defaults to `https://download.elastic.co/logstash/logstash/logstash-1.5.6.tar.gz`.
+* `node['logstash']['checksum']` -  Defaults to `812a809597c7ce00c869e5bb4f87870101fe6a43a2c2a6586f5cc4d1a4986092`.
+* `node['logstash']['version']` -  Defaults to `1.5.6`.
 * `node['logstash']['user']` -  Defaults to `logstash`.
 * `node['logstash']['group']` -  Defaults to `logstash`.
 * `node['logstash']['prefix_root']` -  Defaults to `/opt`.
-* `node['logstash']['prefix_conf']` -  Defaults to `/etc`.
 
 # Recipes
 
-* simple-logstash::default
+* simple-logstash::default - Installs/Configures simple-logstash. No less. No more.
 
 # License and Maintainer
 
 Maintainer:: Yauhen Artsiukhou (<jsirex@gmail.com>)
+
 Source:: https://github.com/jsirex/simple-logstash-cookbook
+
 Issues:: https://github.com/jsirex/simple-logstash-cookbook/issues
 
-License:: Apache 2
+License:: Apache-2.0

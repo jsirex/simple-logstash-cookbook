@@ -1,21 +1,22 @@
 #!/usr/bin/env rake
 # frozen_string_literal: true
+
 require 'foodcritic'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require 'ci/reporter/rake/rspec'
 require 'kitchen/rake_tasks'
-# require 'knife_cookbook_doc/rake_task'
+require 'knife_cookbook_doc/rake_task'
 require 'stove/rake_task'
 
-cookbook_dir = File.expand_path File.dirname(__FILE__)
+cookbook_dir = __dir__
 ENV['BERKSHELF_PATH'] = cookbook_dir + '/.berkshelf'
 ENV['CI_REPORTS'] = cookbook_dir + '/reports'
 
 FoodCritic::Rake::LintTask.new do |t|
   t.options = {
     progress: true,
-    fail_tags: %w(any)
+    fail_tags: %w[any]
   }
 end
 
@@ -25,11 +26,11 @@ RSpec::Core::RakeTask.new(:spec => ['ci:setup:rspec'])
 
 Kitchen::RakeTasks.new
 
-# KnifeCookbookDoc::RakeTask.new(:doc) do |task|
-#   task.options[:cookbook_dir] = './'
-#   task.options[:constraints] = true
-#   task.options[:output_file] = 'README.md'
-# end
+KnifeCookbookDoc::RakeTask.new(:doc) do |task|
+  task.options[:cookbook_dir] = './'
+  task.options[:constraints] = true
+  task.options[:output_file] = 'README.md'
+end
 
 Stove::RakeTask.new
 
@@ -37,7 +38,7 @@ task default: 'quick'
 
 desc 'Run all of the quick tests.'
 task :quick do
-  # Rake::Task['doc'].invoke
+  Rake::Task['doc'].invoke
   Rake::Task['rubocop'].invoke
   Rake::Task['foodcritic'].invoke
   Rake::Task['spec'].invoke

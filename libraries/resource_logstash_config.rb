@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Chef
   class Resource
     # Logstash Config resource

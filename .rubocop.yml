@@ -24,5 +24,11 @@ RescueModifier:
 Metrics/AbcSize:
   Max: 60
 
+Metrics/BlockLength:
+  Max: 40
+
 Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
   Enabled: false

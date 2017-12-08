@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 include_recipe 'runit'
 
 user 'logstash user' do

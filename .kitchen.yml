@@ -1,31 +1,50 @@
 ---
 driver:
-  name: vagrant
-  ssh:
-    insert_key: false
-  customize:
-    cpus: 1
-    memory: 1024
+  name: dokken
+  chef_version: 13.5.3
+  privileged: true
 
 provisioner:
-  name: chef_zero
-  chef_client_path: /usr/bin/chef-client
-  require_chef_omnibus: 12.14.89
+  name: dokken
+  # chef_log_level: info
 
 transport:
-  name: sftp
+  name: dokken
+
+verifier:
+  name: inspec
+  # output: reports/%{platform}_%{suite}_inspec.xml
 
 platforms:
-  - name: centos-6.7
-  - name: centos-7.2
-  - name: debian-7.11
-  - name: debian-8.6
-  - name: ubuntu-12.04
-  - name: ubuntu-14.04
+  - name: debian-8
+    driver:
+      image: dokken/debian-8
+      pid_one_command: /bin/systemd
+    run_list:
+      - recipe[apt]
+
+  - name: debian-9
+    driver:
+      image: dokken/debian-9
+      pid_one_command: /bin/systemd
+    run_list:
+      - recipe[apt]
+
+  - name: ubuntu-16
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /bin/systemd
+    run_list:
+      - recipe[apt]
+
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      pid_one_command: /usr/lib/systemd/systemd
+    run_list:
+      - recipe[yum]
 
 suites:
   - name: default
     run_list:
       - recipe[simple-logstash-test]
-    attributes:
-

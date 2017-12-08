@@ -20,3 +20,5 @@ reports/
 .yardoc/
 Berksfile.lock
 Gemfile.lock
+rvm.env
+
