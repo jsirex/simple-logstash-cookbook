@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'simple-logstash::default' do
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'debian', version: '7.11') do |node|
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '9.1') do |node|
       node.override['logstash']['user'] = 'lgu'
       node.override['logstash']['group'] = 'lgg'
     end.converge(described_recipe)

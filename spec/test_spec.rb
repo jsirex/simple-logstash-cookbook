@@ -4,15 +4,15 @@ require 'spec_helper'
 
 describe 'simple-logstash-test::default' do
   cached(:chef_run) do
-    ChefSpec::SoloRunner.new(platform: 'debian', version: '7.11').converge(described_recipe)
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '9.1').converge(described_recipe)
   end
 
   it 'enables logstash service' do
-    expect(chef_run).to enable_logstash_service('logstash')
+    expect(chef_run).to start_logstash_service('logstash')
   end
 
   it 'enables logstash-two service' do
-    expect(chef_run).to enable_logstash_service('logstash-two')
+    expect(chef_run).to start_logstash_service('logstash-two')
   end
 
   %w[test1 test2 test3].each do |tst|

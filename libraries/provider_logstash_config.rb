@@ -20,13 +20,13 @@ class Chef
         conf_dir.run_action :create
         conf_file.run_action :create
 
-        new_resource.updated_by_last_action(true) if conf_file.updated_by_last_action?
+        new_resource.updated_by_last_action(true) if conf_file.updated_by_last_action? # ~FC085
       end
 
       def action_delete
         conf_file.run_action :delete
 
-        new_resource.updated_by_last_action(true) if conf_file.updated_by_last_action?
+        new_resource.updated_by_last_action(true) if conf_file.updated_by_last_action? # ~FC085
       end
 
       def conf_dir

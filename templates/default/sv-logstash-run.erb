@@ -1,5 +1,0 @@
-#!/bin/sh
-export HOME=<%= @options['home'] %>
-
-exec 2>&1
-exec chpst -u <%= @options['user'] %>:<%= @options['group'] %> -e env <%= @options['home'] %>/bin/logstash <%= @options['args'].join(' ') %>

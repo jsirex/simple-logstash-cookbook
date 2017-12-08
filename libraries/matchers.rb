@@ -6,7 +6,8 @@ if defined?(ChefSpec)
     :logstash_config => %w[create delete],
     :logstash_input => %w[create delete],
     :logstash_filter => %w[create delete],
-    :logstash_output => %w[create delete]
+    :logstash_output => %w[create delete],
+    :logstash_service => %w[start stop restart]
   }.each_pair do |resource, actions|
     ChefSpec.define_matcher resource
 
