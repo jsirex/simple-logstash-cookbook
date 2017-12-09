@@ -26,10 +26,10 @@ You better want to use its child classes.
 #### Attributes
 
 - **service** - logstash service name config belongs to. Defaults to `logstash`
-- **config** - logstash config file name to create. Defaults to `node['logstash']['prefix_conf']/<service>/<name>.conf`
+- **config** - logstash config file name to create. Defaults to `/etc/<service>/<name>.conf`
 - **source** - config template to use. Defaults to `logstash/<name>.conf.erb`
-- **owner** - set owner of config file. Defaults to `node['logstash']['user']`
-- **group** - set group of config file. Defaults to `node['logstash']['group']`
+- **owner** - set owner of config file. Defaults to `logstash`
+- **group** - set group of config file. Defaults to `logstash`
 - **mode** - set group of config file. Defaults to `0640`
 - **variables** - set variables for config template. Defaults to `{}`
 
@@ -38,7 +38,7 @@ You better want to use its child classes.
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `node['logstash']['prefix_conf']/<service>/10_input_<name>.conf`
+- **config** - Defaults to `/etc/<service>/10_input_<name>.conf`
 - **source** - Defaults to `logstash/input/<name>.conf.erb`
 
 ### logstash\_filter
@@ -46,7 +46,7 @@ But it has some different default values:
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `node['logstash']['prefix_conf']/<service>/20_filter_<name>.conf`
+- **config** - Defaults to `/etc/<service>/20_filter_<name>.conf`
 - **source** - Defaults to `logstash/filter/<name>.conf.erb`
 
 ### logstash\_output
@@ -54,25 +54,16 @@ But it has some different default values:
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `node['logstash']['prefix_conf']/<service>/90_output_<name>.conf`
+- **config** - Defaults to `/etc/<service>/90_output_<name>.conf`
 - **source** - Defaults to `logstash/output/<name>.conf.erb`
 
 ### logstash\_service
 
-Defines logstash service based on **runit** HWRP.
+Defines logstash service based. Currently only **systemd** implemented.
 
 #### Actions
 
 Actions are same as in **runit** HWRP. Use this resource as you use **runit**
-
-#### Attributes
-
-- **logstash\_config\_path** - Defaults to `node['logstash']['prefix_conf']/<servicename>`
-- **logstash\_plugin\_path** - Defaults to `nil`
-- **logstash\_filter\_workers** - Defaults to `1`
-- **logstash\_quiet** - Defaults to `true`
-- **logstash\_verbose** - Defaults to `false`
-- **logstash\_debug** - Defaults to `false`
 
 ## Example
 
