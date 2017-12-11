@@ -40,4 +40,5 @@ logstash_service 'logstash'
 logstash_service 'logstash-two' do
   user 'root'
   group 'root'
+  env 'LS_HEAP_SIZE' => '512m', 'FOO' => 'bar'
 end

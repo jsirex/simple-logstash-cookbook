@@ -7,6 +7,7 @@ module SimpleLogstashCookbook
     property :user, String, default: 'logstash', desired_state: false
     property :group, String, default: 'logstash', desired_state: false
     property :daemon_path, String, default: '/opt/logstash/bin/logstash', desired_state: false
+    property :env, Hash, default: {}, desired_state: false
     property :logstash_config_path, String, default: lazy { default_config_path }, desired_state: false
     property :logstash_plugin_path, String, desired_state: false
     property :logstash_filter_workers, Integer, default: 1, desired_state: false

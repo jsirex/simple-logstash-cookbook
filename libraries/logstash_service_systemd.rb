@@ -24,12 +24,21 @@ module SimpleLogstashCookbook
         true
       end
 
+      def env_file
+        find_resource(:file, "/etc/default/#{new_resource.instance_name}") do
+          content new_resource.env.map { |k, v| "#{k}=#{v}" }.join("\n")
+          owner 'root'
+          group 'root'
+          mode '0644'
+        end
+      end
+
       # DRY: generate service resource for the further reuse
       def service_resource
-        find_resource(:systemd_unit, "#{new_resource.name}.service") do
+        find_resource(:systemd_unit, "#{new_resource.instance_name}.service") do
           content(
             'Unit' => {
-              'Description' => "Logstash #{new_resource.name} service",
+              'Description' => "Logstash #{new_resource.instance_name} service",
               'After' => 'network.target',
               'Documentation' => 'https://www.elastic.co/products/logstash'
             },
@@ -37,6 +46,7 @@ module SimpleLogstashCookbook
               'User' => new_resource.user,
               'Group' => new_resource.group,
               'ExecStart' => "#{new_resource.daemon_path} #{new_resource.logstash_args}",
+              'EnvironmentFile' => "/etc/default/#{new_resource.instance_name}",
               'Restart' => 'always',
               'RestartSec' => '1 min',
               'LimitNICE' => 19,
@@ -55,6 +65,7 @@ module SimpleLogstashCookbook
     end
 
     action :start do
+      env_file.notifies :restart, service_resource, :delayed
       service_resource.action += [:create, :enable, :start]
       service_resource.notifies :restart, service_resource, :delayed
     end
