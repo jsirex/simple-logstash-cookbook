@@ -50,7 +50,7 @@ module SimpleLogstashCookbook
               'Restart' => 'always',
               'RestartSec' => '1 min',
               'LimitNICE' => 19,
-              'LimitNOFILE' => 16384
+              'LimitNOFILE' => new_resource.logstash_max_file_descriptors
             },
             'Install' => {
               'WantedBy' => 'multi-user.target'
