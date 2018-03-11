@@ -3,7 +3,7 @@
 module SimpleLogstashCookbook
   # This reource manages logstash service
   class LogstashServiceBase < Chef::Resource
-    property :instance_name, String, name_property: true, required: true, desired_state: false
+    property :instance_name, String, name_property: true, desired_state: false
     property :user, String, default: 'logstash', desired_state: false
     property :group, String, default: 'logstash', desired_state: false
     property :daemon_path, String, default: '/opt/logstash/bin/logstash', desired_state: false
