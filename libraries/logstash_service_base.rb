@@ -11,7 +11,7 @@ module SimpleLogstashCookbook
     property :logstash_config_path, String, default: lazy { default_config_path }, desired_state: false
     property :logstash_plugin_path, String, desired_state: false
     property :logstash_filter_workers, Integer, default: 1, desired_state: false
-    property :logstash_pipeline_batch_size, Integer, default: 125, desired_state: false
+    property :logstash_pipeline_batch_size, [Integer, nil], default: 125, desired_state: false
     property :logstash_quiet, [true, false], default: true, desired_state: false
     property :logstash_verbose, [true, false], default: false, desired_state: false
     property :logstash_debug, [true, false], default: false, desired_state: false
@@ -29,7 +29,7 @@ module SimpleLogstashCookbook
       args << "-f #{logstash_config_path}"
       args << "-p #{logstash_plugin_path}" if logstash_plugin_path
       args << "-w #{logstash_filter_workers}"
-      args << "-b #{logstash_pipeline_batch_size}"
+      args << "-b #{logstash_pipeline_batch_size}" if logstash_pipeline_batch_size
       args << '--quiet' if logstash_quiet
       args << '--verbose' if logstash_verbose
       args << '--debug' if logstash_debug

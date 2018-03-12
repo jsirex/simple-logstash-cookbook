@@ -36,9 +36,13 @@ logstash_filter 'test3' do
   service 'logstash-two'
 end
 
-logstash_service 'logstash'
+logstash_service 'logstash' do
+  logstash_pipeline_batch_size nil
+end
+
 logstash_service 'logstash-two' do
   user 'root'
   group 'root'
   env 'LS_HEAP_SIZE' => '512m', 'FOO' => 'bar'
+  logstash_pipeline_batch_size nil
 end
