@@ -25,7 +25,8 @@ Metrics/AbcSize:
   Max: 60
 
 Metrics/BlockLength:
-  Max: 40
+  # need a big block size for rspec
+  Max: 100
 
 Style/Documentation:
   Enabled: false

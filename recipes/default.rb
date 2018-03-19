@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+include_recipe 'runit' if node['logstash']['init_style'] == 'runit' || !SimpleLogstashCookbook::LogstashServiceSystemd.provides?(node, 'logstash_service')
+
 user 'logstash user' do
   username node['logstash']['user']
   comment 'Logstash User'

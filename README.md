@@ -82,6 +82,7 @@ You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/si
 ## Cookbooks:
 
 * ark
+* runit
 
 # Attributes
 
@@ -91,6 +92,7 @@ You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/si
 * `node['logstash']['user']` -  Defaults to `logstash`.
 * `node['logstash']['group']` -  Defaults to `logstash`.
 * `node['logstash']['prefix_root']` -  Defaults to `/opt`.
+* `node['logstash']['init_style']` -  Defaults to `nil # 'systemd' (default) or 'runit`.
 
 # Recipes
 

@@ -1,0 +1,11 @@
+#!/bin/sh
+<% new_resource = @options[:new_resource] -%>
+
+exec 2>&1
+
+ulimit -n <%= new_resource.logstash_max_file_descriptors %>
+
+exec <%= node['runit']['chpst_bin'] %> \
+    -u <%= new_resource.user %>:<%= new_resource.group %> \
+    -e <%= "/etc/sv/#{new_resource.instance_name}/env" %> \
+    -- <%= new_resource.full_logstash_command %>

@@ -40,6 +40,13 @@ platforms:
     run_list:
       - recipe[apt]
 
+  - name: ubuntu-14
+    driver:
+      image: dokken/ubuntu-14.04
+      pid_one_command: /bin/systemd
+    run_list:
+      - recipe[apt]
+
   - name: centos-7
     driver:
       image: dokken/centos-7
