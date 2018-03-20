@@ -4,6 +4,8 @@ module SimpleLogstashCookbook
   class LogstashServiceSystemd < LogstashServiceBase
     resource_name :logstash_service_systemd
 
+    LOGSTASH_INIT_STYLE = 'systemd'
+
     provides :logstash_service, platform: 'debian' do |node| # ~FC005
       node['platform_version'].to_f >= 8.0
     end

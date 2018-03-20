@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
+# this ensures that the systemd resource file is loaded before this one, thus
+# making it the default resource for platforms provided for by both resources
+require_relative 'logstash_service_systemd'
+
 module SimpleLogstashCookbook
   class LogstashServiceRunit < LogstashServiceBase
     resource_name :logstash_service_runit
 
-    provides :logstash_service, platform: 'ubuntu' do |node|
-      node['platform_version'].to_f >= 12.04
-    end
+    LOGSTASH_INIT_STYLE = 'runit'
 
+    provides :logstash_service, os: 'linux'
     provides :logstash_service_runit, os: 'linux'
 
     action_class do

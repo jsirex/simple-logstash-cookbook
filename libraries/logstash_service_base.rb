@@ -20,23 +20,14 @@ module SimpleLogstashCookbook
     default_action :start
     allowed_actions :start, :stop, :restart
 
-    def provider(arg = nil)
-      result = super
-
-      if arg.nil? && !node['logstash']['init_style'].nil?
-        resource_class = case node['logstash']['init_style']
-                         when 'systemd'
-                           SimpleLogstashCookbook::LogstashServiceSystemd
-                         when 'runit'
-                           SimpleLogstashCookbook::LogstashServiceRunit
-                         else
-                           Chef::Log.warn("Ignoring invalid init style #{node['logstash']['default_init_style']} for Logstash")
-                         end
-
-        result = resource_class.action_class if resource_class
+    def self.provides(*args, **kwargs)
+      super(*args, **kwargs) do |node|
+        if node['logstash']['init_style'].nil? || node['logstash']['init_style'] == self::LOGSTASH_INIT_STYLE
+          block_given? ? yield(node) : true
+        else
+          false
+        end
       end
-
-      result
     end
 
     def default_config_path
