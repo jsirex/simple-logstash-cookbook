@@ -4,6 +4,8 @@ module SimpleLogstashCookbook
   class LogstashServiceSystemd < LogstashServiceBase
     resource_name :logstash_service_systemd
 
+    LOGSTASH_INIT_STYLE = 'systemd'
+
     provides :logstash_service, platform: 'debian' do |node| # ~FC005
       node['platform_version'].to_f >= 8.0
     end
@@ -40,12 +42,14 @@ module SimpleLogstashCookbook
             'Unit' => {
               'Description' => "Logstash #{new_resource.instance_name} service",
               'After' => 'network.target',
-              'Documentation' => 'https://www.elastic.co/products/logstash'
+              'Documentation' => 'https://www.elastic.co/products/logstash',
+              # see https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+              'JobTimeoutSec' => new_resource.timeout_sec.nil? ? 'infinity' : new_resource.timeout_sec
             },
             'Service' => {
               'User' => new_resource.user,
               'Group' => new_resource.group,
-              'ExecStart' => "#{new_resource.daemon_path} #{new_resource.logstash_args}",
+              'ExecStart' => new_resource.full_logstash_command,
               'EnvironmentFile' => "/etc/default/#{new_resource.instance_name}",
               'Restart' => 'always',
               'RestartSec' => '1 min',

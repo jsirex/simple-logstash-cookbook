@@ -7,3 +7,7 @@ default['logstash']['version'] = '1.5.6'
 default['logstash']['user'] = 'logstash'
 default['logstash']['group'] = 'logstash'
 default['logstash']['prefix_root'] = '/opt'
+
+# by default, logstash services are managed by systemd
+# you can have them managed by runit instead
+default['logstash']['init_style'] = nil # 'systemd' (default) or 'runit'
