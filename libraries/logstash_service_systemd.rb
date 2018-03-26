@@ -42,7 +42,9 @@ module SimpleLogstashCookbook
             'Unit' => {
               'Description' => "Logstash #{new_resource.instance_name} service",
               'After' => 'network.target',
-              'Documentation' => 'https://www.elastic.co/products/logstash'
+              'Documentation' => 'https://www.elastic.co/products/logstash',
+              # see https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+              'JobTimeoutSec' => new_resource.timeout_sec.nil? ? 'infinity' : new_resource.timeout_sec
             },
             'Service' => {
               'User' => new_resource.user,

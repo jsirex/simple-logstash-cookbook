@@ -24,6 +24,7 @@ module SimpleLogstashCookbook
           default_logger true
           options(new_resource: new_resource)
           env new_resource.env
+          sv_timeout new_resource.timeout_sec unless new_resource.timeout_sec.nil?
 
           action :nothing
         end
