@@ -5,9 +5,10 @@ maintainer       'Yauhen Artsiukhou'
 maintainer_email 'jsirex@gmail.com'
 license          'Apache-2.0'
 description      'Installs/Configures simple-logstash. No less. No more.'
+version          '0.6.3'
+
 issues_url       'https://github.com/jsirex/simple-logstash-cookbook/issues'
 source_url       'https://github.com/jsirex/simple-logstash-cookbook'
-version          '0.6.3'
 
 supports 'debian', '>= 8.0'
 supports 'ubuntu', '>= 16.0'

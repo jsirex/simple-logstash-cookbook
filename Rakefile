@@ -9,9 +9,8 @@ require 'kitchen/rake_tasks'
 require 'knife_cookbook_doc/rake_task'
 require 'stove/rake_task'
 
-cookbook_dir = __dir__
-ENV['BERKSHELF_PATH'] = cookbook_dir + '/.berkshelf'
-ENV['CI_REPORTS'] = cookbook_dir + '/reports'
+ENV['BERKSHELF_PATH'] = __dir__ + '/.berkshelf'
+ENV['CI_REPORTS'] = __dir__ + '/reports'
 
 FoodCritic::Rake::LintTask.new do |t|
   t.options = {

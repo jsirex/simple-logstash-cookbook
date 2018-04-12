@@ -20,10 +20,12 @@ group :main, halt_on_fail: true do
   guard :rubocop, cli: %(-f fu -D), notification: true do
     watch(/.+\.rb$/)
     watch('Rakefile')
+    watch('Guardfile')
+    watch('Gemfile')
     watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
   end
 
-  guard :foodcritic, cli: '--epic-fail any --progress --chef-version 12', cookbook_paths: '.' do
+  guard :foodcritic, cli: '--epic-fail any --progress --chef-version 14', cookbook_paths: '.' do
     watch(%r{attributes/.+\.rb$})
     watch(%r{providers/.+\.rb$})
     watch(%r{recipes/.+\.rb$})

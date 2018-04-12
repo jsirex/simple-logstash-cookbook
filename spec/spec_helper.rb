@@ -4,6 +4,7 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 
 Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+Dir['./libraries/**/*.rb'].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.formatter = :documentation
@@ -21,6 +22,7 @@ RSpec.configure do |config|
 
   config.order = :random
   config.fail_fast = true
+  config.server_runner_clear_cookbooks = false
 end
 
 at_exit { ChefSpec::Coverage.report! }

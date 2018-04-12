@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'chef', '~> 12.14'
+gem 'chef', '~> 14'
 
 group :lint do
   gem 'foodcritic'
@@ -39,7 +39,6 @@ group :guard do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-foodcritic', require: false
-  gem 'guard-kitchen', require: false
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
 end

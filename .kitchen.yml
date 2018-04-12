@@ -1,7 +1,7 @@
 ---
 driver:
   name: dokken
-  chef_version: 13.5.3
+  chef_version: 14
   privileged: true
 
 provisioner:
@@ -13,7 +13,7 @@ transport:
 
 verifier:
   name: inspec
-  # output: reports/%{platform}_%{suite}_inspec.xml
+  format: doc
 
 platforms:
   - name: debian-8

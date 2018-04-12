@@ -1,7 +1,11 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   DefaultFormatter: fuubar
   DisplayCopNames: true
+  Exclude:
+    - .berkshelf/**/*
+    - Gemfile
+    - Guardfile
 
 Encoding:
   Enabled: false
@@ -25,7 +29,13 @@ Metrics/AbcSize:
   Max: 60
 
 Metrics/BlockLength:
-  Max: 40
+  Max: 60
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
 
 Style/Documentation:
   Enabled: false
