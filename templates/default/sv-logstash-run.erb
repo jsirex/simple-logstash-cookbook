@@ -1,0 +1,10 @@
+#!/bin/sh
+
+exec 2>&1
+
+ulimit -n <%= @options[:max_open_files] %>
+
+exec <%= node['runit']['chpst_bin'] %> \
+     -u <%= @options[:user] %>:<%= @options[:group] %> \
+     -e /etc/sv/<%= @options[:name] %>/env \
+     -- <%= @options[:exec] %>

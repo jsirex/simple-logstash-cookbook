@@ -15,6 +15,9 @@ group :main, halt_on_fail: true do
     watch(%r{spec/.+_spec.rb})
     watch('spec/spec_helper.rb') { 'spec' }
     watch('libraries/matchers.rb') { 'spec' }
+
+    # Project specific tests
+    watch(%r{test/fixtures/cookbooks/simple-logstash-spec/recipes/(?<name>.+)\.rb}) { |m| "spec/#{m[:name]}_spec.rb" }
   end
 
   guard :rubocop, cli: %(-f fu -D), notification: true do

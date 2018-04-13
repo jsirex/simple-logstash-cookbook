@@ -82,12 +82,13 @@ You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/si
 ## Cookbooks:
 
 * ark
+* runit
 
 # Attributes
 
-* `node['logstash']['download_url']` -  Defaults to `https://download.elastic.co/logstash/logstash/logstash-1.5.6.tar.gz`.
-* `node['logstash']['checksum']` -  Defaults to `812a809597c7ce00c869e5bb4f87870101fe6a43a2c2a6586f5cc4d1a4986092`.
-* `node['logstash']['version']` -  Defaults to `1.5.6`.
+* `node['logstash']['download_url']` -  Defaults to `https://artifacts.elastic.co/downloads/logstash/logstash-6.2.3.tar.gz`.
+* `node['logstash']['checksum']` -  Defaults to `0c326917ce035543e44042e95042d2e6f80f5b9119f514dbe275b236b964cbe7`.
+* `node['logstash']['version']` -  Defaults to `6.2.3`.
 * `node['logstash']['user']` -  Defaults to `logstash`.
 * `node['logstash']['group']` -  Defaults to `logstash`.
 * `node['logstash']['prefix_root']` -  Defaults to `/opt`.

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-default['logstash']['download_url'] = 'https://download.elastic.co/logstash/logstash/logstash-1.5.6.tar.gz'
-default['logstash']['checksum'] = '812a809597c7ce00c869e5bb4f87870101fe6a43a2c2a6586f5cc4d1a4986092'
-default['logstash']['version'] = '1.5.6'
+default['logstash']['download_url'] = 'https://artifacts.elastic.co/downloads/logstash/logstash-6.2.3.tar.gz'
+default['logstash']['checksum'] = '0c326917ce035543e44042e95042d2e6f80f5b9119f514dbe275b236b964cbe7'
+default['logstash']['version'] = '6.2.3'
 
 default['logstash']['user'] = 'logstash'
 default['logstash']['group'] = 'logstash'

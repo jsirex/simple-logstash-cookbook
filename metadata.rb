@@ -15,6 +15,7 @@ supports 'ubuntu', '>= 16.0'
 supports 'centos', '>= 7.0'
 
 depends 'ark'
+depends 'runit'
 
 chef_version '>= 12.6'
 

@@ -20,10 +20,6 @@ module SimpleLogstashCookbook
     provides :logstash_service_systemd, os: 'linux'
 
     action_class do
-      def whyrun_supported?
-        true
-      end
-
       def env_file
         find_resource(:file, "/etc/default/#{new_resource.instance_name}") do
           content new_resource.env.map { |k, v| "#{k}=#{v}" }.join("\n")
@@ -33,7 +29,6 @@ module SimpleLogstashCookbook
         end
       end
 
-      # DRY: generate service resource for the further reuse
       def service_resource
         find_resource(:systemd_unit, "#{new_resource.instance_name}.service") do
           content(
@@ -45,12 +40,12 @@ module SimpleLogstashCookbook
             'Service' => {
               'User' => new_resource.user,
               'Group' => new_resource.group,
-              'ExecStart' => "#{new_resource.daemon_path} #{new_resource.logstash_args}",
-              'EnvironmentFile' => "/etc/default/#{new_resource.instance_name}",
+              'ExecStart' => new_resource.logstash_exec,
+              'EnvironmentFile' => env_file.path,
               'Restart' => 'always',
               'RestartSec' => '1 min',
               'LimitNICE' => 19,
-              'LimitNOFILE' => new_resource.logstash_max_file_descriptors
+              'LimitNOFILE' => new_resource.max_open_files
             },
             'Install' => {
               'WantedBy' => 'multi-user.target'
@@ -65,8 +60,10 @@ module SimpleLogstashCookbook
     end
 
     action :start do
+      data_directory.action += [:create]
+      log_directory.action += [:create]
       env_file.notifies :restart, service_resource, :delayed
-      service_resource.action += [:create, :enable, :start]
+      service_resource.action += [:create, :enable]
       service_resource.notifies :restart, service_resource, :delayed
     end
 
@@ -75,7 +72,7 @@ module SimpleLogstashCookbook
     end
 
     action :restart do
-      service_resource.action += [:create, :enable, :restart]
+      service_resource.action += [:restart]
     end
   end
 end

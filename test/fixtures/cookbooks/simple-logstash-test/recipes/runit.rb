@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 include_recipe 'java'
+include_recipe 'runit'
 include_recipe 'simple-logstash'
 
 # Setup directory with few samples
@@ -36,7 +37,7 @@ logstash_filter 'test3' do
   service 'logstash-two'
 end
 
-logstash_service 'logstash' do
+logstash_service_runit 'logstash' do
   custom_args '--pipeline.workers 1 --log.level fatal'
 end
 
@@ -47,4 +48,6 @@ logstash_service 'logstash-two' do
 
   data_path '/var/lib/logstash-custom-data-path'
   custom_args '--log.level debug'
+
+  provider :logstash_service_runit
 end
