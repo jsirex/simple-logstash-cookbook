@@ -27,45 +27,53 @@ You better want to use its child classes.
 
 #### Attributes
 
-- **service** - logstash service name config belongs to. Defaults to `logstash`
-- **config** - logstash config file name to create. Defaults to `/etc/<service>/<name>.conf`
-- **source** - config template to use. Defaults to `logstash/<name>.conf.erb`
-- **owner** - set owner of config file. Defaults to `logstash`
-- **group** - set group of config file. Defaults to `logstash`
-- **mode** - set group of config file. Defaults to `0640`
-- **variables** - set variables for config template. Defaults to `{}`
+- **user** - sets owner of the config file. Defaults to `logstash`
+- **group** - sets group of config file. Defaults to `logstash`
+- **prefix_conf** - sets prefix configuration dir. Defaults to `/etc`
+- **service** - sets logstash service name config belongs to. Defaults to `logstash`
+- **config_dir** - sets logstash config dir with pipelines. Defaults to `conf.d`
+- **config_name** - sets logstash config name. Defaults to `<name>.conf`
+- **template_source** - sets config template to use. Defaults to `logstash/<name>.conf.erb`
+- **template_mode** - sets mode on the config file. Defaults to `0640`
+- **template_variables** - set variables for the config template. Defaults to `{}`
 
 ### logstash\_input
 
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `/etc/<service>/10_input_<name>.conf`
-- **source** - Defaults to `logstash/input/<name>.conf.erb`
+- **config_name** - Defaults to `/etc/<service>/10_input_<name>.conf`
+- **template_source** - Defaults to `logstash/input/<name>.conf.erb`
 
 ### logstash\_filter
 
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `/etc/<service>/20_filter_<name>.conf`
-- **source** - Defaults to `logstash/filter/<name>.conf.erb`
+- **config_name** - Defaults to `/etc/<service>/20_filter_<name>.conf`
+- **template_source** - Defaults to `logstash/filter/<name>.conf.erb`
 
 ### logstash\_output
 
 This resource based on *logstash\_config*. It has the same actions and attributes.
 But it has some different default values:
 
-- **config** - Defaults to `/etc/<service>/90_output_<name>.conf`
-- **source** - Defaults to `logstash/output/<name>.conf.erb`
+- **config_name** - Defaults to `/etc/<service>/90_output_<name>.conf`
+- **template_source** - Defaults to `logstash/output/<name>.conf.erb`
 
 ### logstash\_service
 
-Defines logstash service based. Currently only **systemd** implemented.
+Defines logstash service. Currentl supported implementations:
 
-#### Actions
+- **systemd**
+- **runit**
 
-Actions are same as in **runit** HWRP. Use this resource as you use **runit**
+Cookbook tries to use **systemd**, but fallbacks to the **runit**.
+
+Consider:
+
+- [Systemd Implementation](libraries/logstash_service_systemd.rb)
+- [Runit Implementation](libraries/logstash_service_runit.rb)
 
 ## Example
 
