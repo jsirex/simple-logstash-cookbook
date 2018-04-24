@@ -45,11 +45,11 @@ suites:
       - recipe[simple-logstash-test]
     attributes:
       logstash:
-        download_url: http://nexus.e3s.epam.com/repository/e3s-install/logstash/6.2.3/logstash-6.2.3.tar.gz
+        # download_url: http://nexus.e3s.epam.com/repository/e3s-install/logstash/6.2.3/logstash-6.2.3.tar.gz
 
   - name: runit
     run_list:
       - recipe[simple-logstash-test::runit]
     attributes:
       logstash:
-        download_url: http://nexus.e3s.epam.com/repository/e3s-install/logstash/6.2.3/logstash-6.2.3.tar.gz
+        # download_url: http://nexus.e3s.epam.com/repository/e3s-install/logstash/6.2.3/logstash-6.2.3.tar.gz

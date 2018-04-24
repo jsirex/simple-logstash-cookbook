@@ -63,6 +63,7 @@ But it has some different default values:
 
 Defines logstash service. Currentl supported implementations:
 
+- **base** - for internal use
 - **systemd**
 - **runit**
 
@@ -70,8 +71,35 @@ Cookbook tries to use **systemd**, but fallbacks to the **runit**.
 
 Consider:
 
+- [Base Service Implementation](libraries/logstash_service_base.rb)
 - [Systemd Implementation](libraries/logstash_service_systemd.rb)
 - [Runit Implementation](libraries/logstash_service_runit.rb)
+
+#### Actions
+
+- **start** - default, enables and starts a service
+- **stop** - stops and disables a service
+- **restart** - restarts a service
+
+#### Attributes
+
+- **user** - sets owner of the config file. Defaults to `logstash`
+- **group** - sets group of config file. Defaults to `logstash`
+- **daemon\_path** - path to binary to execute. Defaults to `/opt/logstash/bin/logstash`
+- **env** - optional environment variables to set. Defaults to `{}`
+- **config\_path** - sets path to a config or directory to use. Defaults to `/etc/<name>/conf.d`
+- **data\_path** - sets path to a data directory. Defaults to `/var/lib/<name>/data`
+- **logs\_path** - sets path to a log directory. Defaults to `/var/log/<name>`
+- **pipeline\_workers** - number of working threads. See logstash documentation. Defaults to `1`
+- **max\_open\_files** - sets maximum files allowed to open by process. Defaults to `16384`
+- **custom\_args** - optional string with additional custom arguments passed to logstash. Defaults to `''`
+
+Attributes to customize logstash flags:
+
+- **config\_path\_flag** - flag for config path. Defaults to `--path.config`
+- **data\_path\_flag** - flag for data path. Defaults to `--path.data`
+- **logs\_path\_flag** - flag for logs path. Defaults to `--path.logs`
+- **pipeline\_workers\_flag** - flag for pipeline workers. Defaults to `--pipeline.workers`
 
 ## Example
 
