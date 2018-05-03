@@ -42,11 +42,11 @@ module SimpleLogstashCookbook
     def logstash_exec
       args = []
       args << daemon_path
-      args << "#{config_path_flag} #{config_path}"
-      args << "#{data_path_flag} #{data_path}"
-      args << "#{logs_path_flag} #{logs_path}"
-      args << "#{pipeline_workers_flag} #{pipeline_workers}"
-      args << custom_args
+      args << "#{config_path_flag} #{config_path}" unless config_path_flag.empty? || config_path.empty?
+      args << "#{data_path_flag} #{data_path}" unless data_path_flag.empty? || data_path.empty?
+      args << "#{logs_path_flag} #{logs_path}" unless logs_path_flag.empty? || logs_path.empty?
+      args << "#{pipeline_workers_flag} #{pipeline_workers}" unless pipeline_workers_flag.empty? || pipeline_workers.empty?
+      args << custom_args unless custom_args.empty?
 
       args.join(' ')
     end
