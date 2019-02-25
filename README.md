@@ -87,28 +87,32 @@ Consider:
 
 - **user** - sets owner of the config file. Defaults to `logstash`
 - **group** - sets group of config file. Defaults to `logstash`
-- **daemon_path** - path to binary to execute. Defaults to `/opt/logstash/bin/logstash`
+- **daemon\_path** - path to binary to execute. Defaults to `/opt/logstash/bin/logstash`
 - **env** - optional environment variables to set. Defaults to `{}`
-- **config_path** - sets path to a config or directory to use. Defaults to `/etc/<name>/conf.d`
-- **data_path** - sets path to a data directory. Defaults to `/var/lib/<name>/data`
-- **logs_path** - sets path to a log directory. Defaults to `/var/log/<name>`
-- **pipeline_workers** - number of working threads. See logstash documentation. Defaults to `1`
-- **max_open_files** - sets maximum files allowed to open by process. Defaults to `16384`
-- **custom_args** - optional string with additional custom arguments passed to logstash. Defaults to `''`
-- **systemd_unit_hash** - optional string or hash with custom systemd unit. Defaults to [this](https://github.com/jsirex/simple-logstash-cookbook/blob/master/libraries/logstash_service_systemd.rb#L22)
+- **config\_path** - sets path to a config or directory to use. Defaults to `/etc/<name>/conf.d`
+- **data\_path** - sets path to a data directory. Defaults to `/var/lib/<name>/data`
+- **logs\_path** - sets path to a log directory. Defaults to `/var/log/<name>`
+- **pipeline\_workers** - number of working threads. See logstash documentation. Defaults to `1`
+- **max\_open\_files** - sets maximum files allowed to open by process. Defaults to `16384`
+- **custom\_args** - optional string with additional custom arguments passed to logstash. Defaults to `''`
 
 Attributes to customize logstash flags:
 
-- **config_path_flag** - flag for config path. Defaults to `--path.config`
-- **data_path_flag** - flag for data path. Defaults to `--path.data`
-- **logs_path_flag** - flag for logs path. Defaults to `--path.logs`
-- **pipeline_workers_flag** - flag for pipeline workers. Defaults to `--pipeline.workers`
+- **config\_path\_flag** - flag for config path. Defaults to `--path.config`
+- **data\_path\_flag** - flag for data path. Defaults to `--path.data`
+- **logs\_path\_flag** - flag for logs path. Defaults to `--path.logs`
+- **pipeline\_workers\_flag** - flag for pipeline workers. Defaults to `--pipeline.workers`
 
 ## Example
 
 You can visit fixture cookbook [simple-logstash-test](test/fixtures/cookbooks/simple-logstash-test)
 
 # Requirements
+
+
+## Chef Client:
+
+* chef (>= 12.6) ()
 
 ## Platform:
 
