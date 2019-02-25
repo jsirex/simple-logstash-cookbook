@@ -23,6 +23,12 @@ describe 'simple-logstash-spec::logstash_service' do
       expect(lservice.action).to include(:start)
     end
 
+    it 'uses systemd provided unit' do
+      lservice = chef_run.logstash_service_systemd('systemd-unit')
+      expect(lservice.resource_name).to eq(:logstash_service_systemd)
+      expect(lservice.action).to include(:start)
+    end
+
     it 'uses runit' do
       lservice = chef_run.logstash_service_runit('runit-explicit')
       expect(lservice.resource_name).to eq(:logstash_service_runit)

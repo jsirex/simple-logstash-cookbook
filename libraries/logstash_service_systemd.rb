@@ -19,6 +19,29 @@ module SimpleLogstashCookbook
     provides :logstash_service, platform: 'fedora'
     provides :logstash_service_systemd, os: 'linux'
 
+    property :systemd_unit_hash, [String, Hash], default: lazy {
+      {
+        'Unit' => {
+          'Description' => "Logstash #{new_resource.instance_name} service",
+          'After' => 'network.target',
+          'Documentation' => 'https://www.elastic.co/products/logstash'
+        },
+        'Service' => {
+          'User' => new_resource.user,
+          'Group' => new_resource.group,
+          'ExecStart' => new_resource.logstash_exec,
+          'EnvironmentFile' => env_file.path,
+          'Restart' => 'always',
+          'RestartSec' => '1 min',
+          'LimitNICE' => 19,
+          'LimitNOFILE' => new_resource.max_open_files
+        },
+        'Install' => {
+          'WantedBy' => 'multi-user.target'
+        },
+      }
+    }
+
     action_class do
       def env_file
         find_resource(:file, "/etc/default/#{new_resource.instance_name}") do
@@ -31,26 +54,7 @@ module SimpleLogstashCookbook
 
       def service_resource
         find_resource(:systemd_unit, "#{new_resource.instance_name}.service") do
-          content(
-            'Unit' => {
-              'Description' => "Logstash #{new_resource.instance_name} service",
-              'After' => 'network.target',
-              'Documentation' => 'https://www.elastic.co/products/logstash'
-            },
-            'Service' => {
-              'User' => new_resource.user,
-              'Group' => new_resource.group,
-              'ExecStart' => new_resource.logstash_exec,
-              'EnvironmentFile' => env_file.path,
-              'Restart' => 'always',
-              'RestartSec' => '1 min',
-              'LimitNICE' => 19,
-              'LimitNOFILE' => new_resource.max_open_files
-            },
-            'Install' => {
-              'WantedBy' => 'multi-user.target'
-            }
-          )
+          content(new_resource.systemd_unit_hash)
 
           triggers_reload true
 
