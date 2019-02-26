@@ -93,6 +93,7 @@ Consider:
 - **pipeline\_workers** - number of working threads. See logstash documentation. Defaults to `1`
 - **max\_open\_files** - sets maximum files allowed to open by process. Defaults to `16384`
 - **custom\_args** - optional string with additional custom arguments passed to logstash. Defaults to `''`
+- **systemd\_unit\_hash** - optional string or hash with custom systemd unit. Defaults to [this](https://github.com/jsirex/simple-logstash-cookbook/blob/master/libraries/logstash_service_systemd.rb#L22)
 
 Attributes to customize logstash flags:
 
