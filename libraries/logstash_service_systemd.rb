@@ -22,19 +22,19 @@ module SimpleLogstashCookbook
     property :systemd_unit_hash, [String, Hash], default: lazy {
       {
         'Unit' => {
-          'Description' => "Logstash #{new_resource.instance_name} service",
+          'Description' => "Logstash #{instance_name} service",
           'After' => 'network.target',
           'Documentation' => 'https://www.elastic.co/products/logstash'
         },
         'Service' => {
-          'User' => new_resource.user,
-          'Group' => new_resource.group,
-          'ExecStart' => new_resource.logstash_exec,
-          'EnvironmentFile' => env_file.path,
+          'User' => user,
+          'Group' => group,
+          'ExecStart' => logstash_exec,
+          'EnvironmentFile' => "/etc/default/#{instance_name}",
           'Restart' => 'always',
           'RestartSec' => '1 min',
           'LimitNICE' => 19,
-          'LimitNOFILE' => new_resource.max_open_files
+          'LimitNOFILE' => max_open_files
         },
         'Install' => {
           'WantedBy' => 'multi-user.target'
@@ -54,7 +54,7 @@ module SimpleLogstashCookbook
 
       def service_resource
         find_resource(:systemd_unit, "#{new_resource.instance_name}.service") do
-          content(new_resource.systemd_unit_hash)
+          content new_resource.systemd_unit_hash
 
           triggers_reload true
 
