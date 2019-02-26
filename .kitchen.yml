@@ -53,3 +53,7 @@ suites:
     attributes:
       logstash:
         # download_url: http://nexus.e3s.epam.com/repository/e3s-install/logstash/6.2.3/logstash-6.2.3.tar.gz
+
+  - name: systemd-unit
+    run_list:
+      - recipe[simple-logstash-test::systemd-unit]

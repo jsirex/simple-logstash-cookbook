@@ -45,7 +45,7 @@ module SimpleLogstashCookbook
       args << "#{config_path_flag} #{config_path}" unless config_path_flag.empty? || config_path.empty?
       args << "#{data_path_flag} #{data_path}" unless data_path_flag.empty? || data_path.empty?
       args << "#{logs_path_flag} #{logs_path}" unless logs_path_flag.empty? || logs_path.empty?
-      args << "#{pipeline_workers_flag} #{pipeline_workers}" unless pipeline_workers_flag.empty? || pipeline_workers.empty?
+      args << "#{pipeline_workers_flag} #{pipeline_workers}" unless pipeline_workers_flag.empty? || pipeline_workers <= 0
       args << custom_args unless custom_args.empty?
 
       args.join(' ')
