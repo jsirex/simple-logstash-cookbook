@@ -21,7 +21,7 @@ logstash_filter 'test1'
 
 content = {
   'Unit' => {
-    'Description' => "Logstash service",
+    'Description' => 'Logstash service',
     'After' => 'network.target',
     'Documentation' => 'https://www.elastic.co/products/logstash'
   },

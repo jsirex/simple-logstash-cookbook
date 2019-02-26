@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe file('/etc/systemd/system/logstash.service') do
   it { should exist }
 
@@ -20,10 +22,8 @@ describe file('/etc/systemd/system/logstash.service') do
     '\[Install\]',
     'WantedBy = multi-user\.target',
   ]
-  its('content') { should match(%r{^#{systemd_config.join('\n')}$})}
+  its('content') { should match(%r{^#{systemd_config.join('\n')}$}) }
 end
-
-
 
 describe command('/opt/logstash/bin/logstash --config.test_and_exit -f /etc/logstash/conf.d') do
   its(:exit_status) { should eq 0 }
